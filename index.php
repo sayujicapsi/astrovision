@@ -1,15 +1,15 @@
 <?php
 
 
-$actual_link =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-$url = $actual_link.'/img/data.json';
-$curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, $url);
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($curl, CURLOPT_HEADER, false);
-$data = curl_exec($curl);
-curl_close($curl);
-
+// $actual_link =  (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+// $url = $actual_link.'/img/data.json';
+// $curl = curl_init();
+// curl_setopt($curl, CURLOPT_URL, $url);
+// curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+// curl_setopt($curl, CURLOPT_HEADER, false);
+// $data = curl_exec($curl);
+// curl_close($curl);
+$data = file_get_contents('data.json');
 $data = json_decode($data,true);
 usort($data, function($x, $y) {
     return $y['amount'] <=> $x['amount'];
